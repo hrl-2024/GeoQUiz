@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import com.bignerdranch.android.geoquiz.databinding.ActivityMainBinding
 
@@ -42,10 +41,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.nextButton.setOnClickListener {
             currentIndex = (currentIndex + 1) % questionBank.size
-            updateQustion()
+            updateQuestion()
         }
 
-        updateQustion()
+        updateQuestion()
     }
 
     override fun onStart() {
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onDestroy() called")
     }
 
-    private fun updateQustion() {
+    private fun updateQuestion() {
         val questionTextResId = questionBank[currentIndex].textResId
         binding.questionTextView.setText(questionTextResId)
     }
