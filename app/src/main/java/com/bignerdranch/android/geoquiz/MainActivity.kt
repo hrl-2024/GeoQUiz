@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bignerdranch.android.geoquiz.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 private const val TAG = "MainActivity"
 
@@ -82,6 +83,9 @@ class MainActivity : AppCompatActivity() {
             R.string.incorrect_toast
         }
 
-        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
+        // Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
+
+        // Challenge: Use a Snackbar instead of a Toast
+        Snackbar.make(binding.root, messageResId, Snackbar.LENGTH_SHORT).show()
     }
 }
