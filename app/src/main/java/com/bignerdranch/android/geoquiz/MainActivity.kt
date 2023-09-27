@@ -41,6 +41,10 @@ class MainActivity : AppCompatActivity() {
             updateQuestion()
         }
 
+        binding.cheatButton.setOnClickListener {
+            // Start CheatActivity
+        }
+
         updateQuestion()
     }
 
