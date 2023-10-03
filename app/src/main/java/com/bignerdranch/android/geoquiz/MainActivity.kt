@@ -70,6 +70,8 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             blurCheatButton()
         }
+
+        binding.apiLevel.text = "Your API Level ${Build.VERSION.SDK_INT}"
     }
 
     override fun onStart() {
