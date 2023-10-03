@@ -1,6 +1,9 @@
 package com.bignerdranch.android.geoquiz
 
 import android.content.Intent
+import android.graphics.RenderEffect
+import android.graphics.Shader
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import com.bignerdranch.android.geoquiz.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -61,6 +65,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         updateQuestion()
+
+        // .S is the code for API Level 31
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            blurCheatButton()
+        }
     }
 
     override fun onStart() {
@@ -106,5 +115,14 @@ class MainActivity : AppCompatActivity() {
 
         // Challenge: Use a Snackbar instead of a Toast
         Snackbar.make(binding.root, messageResId, Snackbar.LENGTH_SHORT).show()
+    }
+
+    // Adding code that is from later API levels (31) than minimum API (24) will causes Android Lint error
+    // However, can still run and compile on devices running API Level 31
+    // How do we address this? - raise the minimum sdk. But we can also use annotation
+    @RequiresApi(Build.VERSION_CODES.S)
+    private fun blurCheatButton() {
+        val effect = RenderEffect.createBlurEffect(10f, 10f, Shader.TileMode.CLAMP)
+        binding.cheatButton.setRenderEffect(effect)
     }
 }
